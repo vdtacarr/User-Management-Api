@@ -55,4 +55,14 @@ public class MainController {
         // This returns a JSON or XML with the users
         return userRepository.findAll();
     }
+
+    @GetMapping(path = "/one/{id}")
+    public @ResponseBody User  getOneUser(@PathVariable("id") Integer id) {
+        // This returns a JSON or XML with the users
+        Optional<User> user = userRepository.findById(id);
+        if(user.isPresent()){
+            return user.get();
+        }
+       return null;
+    }
 }
